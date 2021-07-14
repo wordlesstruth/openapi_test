@@ -9,7 +9,7 @@ from {{packageName}} import util
 {{#operation}}
 
 
-def {{operationId}}({{#allParams}}body{{^required}}=None{{/required}}{{^-last}}, {{/-last}}{{/allParams}}):
+def {{operationId}}({{#allParams}}{{paramName}}{{^required}}=None{{/required}}{{^-last}}, {{/-last}}{{/allParams}}):
     """{{#summary}}{{.}}{{/summary}}{{^summary}}{{operationId}}{{/summary}}
 
     {{#notes}}{{.}}{{/notes}}
@@ -59,9 +59,7 @@ def {{operationId}}({{#allParams}}body{{^required}}=None{{/required}}{{^-last}},
     :rtype: {{#returnType}}{{.}}{{/returnType}}{{^returnType}}None{{/returnType}}
     """
     {{#allParams}}
-{{#isBodyParam}}
-    {{paramName}} = body
-{{/isBodyParam}}
+
     {{/allParams}}
     return {{classname}}_impl.{{operationId}}({{#allParams}}{{paramName}}{{^required}}=None{{/required}}{{^-last}}, {{/-last}}{{/allParams}})
 {{/operation}}
